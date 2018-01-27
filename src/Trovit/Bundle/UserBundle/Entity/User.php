@@ -1,5 +1,6 @@
 <?php
-namespace AppBundle\Security\User;
+
+namespace Trovit\Bundle\UserBundle\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
@@ -11,7 +12,7 @@ class User implements UserInterface, EquatableInterface
     private $salt;
     private $roles;
 
-    public function __construct($username, $password, $salt, array $roles)
+    public function __construct($username, $password, $salt = null, array $roles = array())
     {
         $this->username = $username;
         $this->password = $password;
@@ -45,7 +46,7 @@ class User implements UserInterface, EquatableInterface
 
     public function isEqualTo(UserInterface $user)
     {
-        if (!$user instanceof WebserviceUser) {
+        if (!$user instanceof User) {
             return false;
         }
 
