@@ -1,0 +1,4 @@
+services:
+#    trovit_user.example:
+#        class: Trovit\Bundle\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
