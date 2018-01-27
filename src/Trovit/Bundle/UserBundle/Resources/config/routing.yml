@@ -1,3 +1,3 @@
-trovit_user_homepage:
-    path:     /
-    defaults: { _controller: TrovitUserBundle:Default:index }
+trovit_user_check_login:
+  path: /check-login
+  defaults: { _controller: TrovitUserBundle:User:checkLogin }
