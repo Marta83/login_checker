@@ -35,3 +35,4 @@ services:
         arguments:
             $host: '%redis_host%'
             $port: '%redis_port%'
+            $num_database: '%redis_num_database%'

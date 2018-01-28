@@ -11,9 +11,6 @@ class UserController extends Controller
 {
     public function checkLoginAction(Request $request)
     {
-        $redis = $this->container->get('snc_redis.default');
-        $val = $redis->set('user:orugrita', serialize(array('username' => 'orugrita', 'password' =>'1234')));
-
         $username = $request->query->get('username');
         $pass = $request->query->get('pass');
 

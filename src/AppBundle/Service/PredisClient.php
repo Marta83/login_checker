@@ -6,9 +6,9 @@ class PredisClient implements RedisClient
 {
     private $client;
 
-    public function __construct($host, $port)
+    public function __construct($host, $port, $num_database)
     {
-        $this->client = new \Predis\Client("tcp://$host:$port");
+        $this->client = new \Predis\Client("tcp://$host:$port?database=$num_database");
     }
 
 
@@ -16,5 +16,6 @@ class PredisClient implements RedisClient
     {
         return $this->client;
     }
+
 }
 

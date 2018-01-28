@@ -21,9 +21,15 @@ class RedisUserRepository implements UserRepository
             return null;
         }
 
-        $data = unserialize($user);
+        return unserialize($user);
+    }
 
-        return new User($data['username'], $data['password']);
+    public function insert(User $user)
+    {
+        $this->client->set(
+            $this->getKey($user->getUsername()),
+            serialize($user)
+        );
     }
 
     private function getKey($username)
