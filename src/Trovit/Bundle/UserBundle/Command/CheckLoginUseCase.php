@@ -3,7 +3,7 @@
 namespace Trovit\Bundle\UserBundle\Command;
 
 use Trovit\Bundle\UserBundle\Entity\Repository\RedisUserRepository;
-use Trovit\Bundle\UserBundle\Entity\User;
+use Trovit\Bundle\UserBundle\Utils\CheckLoginResponse;
 use AppBundle\Service\RedisClient;
 
 class CheckLoginUseCase {
@@ -24,24 +24,10 @@ class CheckLoginUseCase {
         $user_repository = new RedisUserRepository($this->redis);
         $user = $user_repository->loadUserByUsername($username);
 
-        return $this->getResponse($user, $pass);
+        $check_login_response = new CheckLoginResponse();
 
-    }
+        return $check_login_response->getResponse($user, $pass);
 
-    private function getResponse(?User $user, string $pass): array
-    {
-        $success = $user && $pass == $user->getPassword();
-        $message = 'User and Password match.';
-
-        if(!$user){
-           $message = "User does not exist.";
-        }
-        elseif($pass != $user->getPassword() ){
-           $message =  "User and Password do not match.";
-        }
-
-        return array('success' => $success,
-                     'message' => $message);
     }
 
 
