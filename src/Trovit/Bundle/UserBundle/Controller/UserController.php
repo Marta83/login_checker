@@ -5,7 +5,7 @@ namespace Trovit\Bundle\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Trovit\Bundle\UserBundle\Entity\Repository\RedisUserRepository;
+use Trovit\Bundle\UserBundle\Command\CheckLoginUseCase;
 
 class UserController extends Controller
 {
@@ -15,20 +15,9 @@ class UserController extends Controller
         $pass = $request->query->get('pass');
 
         $redis = $this->container->get('AppBundle\Service\PredisClient');
-        $userRepository = new RedisUserRepository($redis);
-        $user = $userRepository->loadUserByUsername($username);
+        $check_login_usecase = new CheckLoginUseCase($redis);
+        $response = $check_login_usecase->execute($username, $pass);
 
-        if(!$user)
-        {
-          return new JsonResponse(array('success' => false, 'message' => "User does not exist."));
-        }
-
-        if($pass != $user->getPassword() )
-        {
-          return new JsonResponse(array('success' => false, 'message' => "User and Password do not match."));
-        }
-
-
-        return new JsonResponse(array('success' => true, 'message' => "User and Password match."));
+        return new JsonResponse($response);
     }
 }

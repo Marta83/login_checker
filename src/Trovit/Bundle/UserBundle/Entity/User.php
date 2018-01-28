@@ -12,7 +12,7 @@ class User implements UserInterface, EquatableInterface
     private $salt;
     private $roles;
 
-    public function __construct($username, $password, $salt = null, array $roles = array())
+    public function __construct(string $username, string $password, $salt = null, array $roles = array())
     {
         $this->username = $username;
         $this->password = $password;
@@ -20,22 +20,22 @@ class User implements UserInterface, EquatableInterface
         $this->roles = $roles;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
         return $this->roles;
     }
 
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function getSalt()
+    public function getSalt(): string
     {
         return $this->salt;
     }
 
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
@@ -44,7 +44,7 @@ class User implements UserInterface, EquatableInterface
     {
     }
 
-    public function isEqualTo(UserInterface $user)
+    public function isEqualTo(UserInterface $user): bool
     {
         if (!$user instanceof User) {
             return false;

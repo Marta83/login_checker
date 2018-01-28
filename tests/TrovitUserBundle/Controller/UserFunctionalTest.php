@@ -69,7 +69,7 @@ class UserFunctionalTest extends WebTestCase
 
     }
 
-    private function setCheckLoginRequest ($username, $password)
+    private function setCheckLoginRequest (string $username, string $password)
     {
         $this->client->request('GET',"/check-login?username=$username&pass=$password");
     }

@@ -17,6 +17,12 @@ class RedisUserFactory
         $this->user_repository =  new RedisUserRepository($client);
     }
 
+    /**
+     * array['username']
+     *      ['password']
+     *
+     * @param array $attributes (See above)
+     */
     public function create(array $attributes)
     {
         $user = new User ($attributes['username'], $attributes['password']);
@@ -25,7 +31,13 @@ class RedisUserFactory
         return $user;
     }
 
-    public function createList(array $users)
+    /**
+     * array[array['username']
+     *            ['password']]
+     *
+     * @param array $users (See above)
+     */
+    public function createList(array $users): array
     {
         $data = array();
 

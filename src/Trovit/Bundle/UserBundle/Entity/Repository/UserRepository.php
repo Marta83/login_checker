@@ -6,6 +6,6 @@ use Trovit\Bundle\UserBundle\Entity\User;
 
 interface UserRepository
 {
-    public function loadUserByUsername($username);
-    public function insert(User $user);
+    public function loadUserByUsername(string $username): ?User;
+    public function insert(User $user): void;
 }

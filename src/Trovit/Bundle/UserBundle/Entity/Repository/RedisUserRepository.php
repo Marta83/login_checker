@@ -14,7 +14,10 @@ class RedisUserRepository implements UserRepository
         $this->client = $client->getClient();
     }
 
-    public function loadUserByUsername($username)
+    /**
+     * @param string $username
+     */
+    public function loadUserByUsername(string $username): ?User
     {
         $user = $this->client->get($this->getKey($username));
         if (!$user) {
@@ -24,7 +27,10 @@ class RedisUserRepository implements UserRepository
         return unserialize($user);
     }
 
-    public function insert(User $user)
+    /**
+     * @param User $user
+     */
+    public function insert(User $user): void
     {
         $this->client->set(
             $this->getKey($user->getUsername()),
@@ -32,7 +38,7 @@ class RedisUserRepository implements UserRepository
         );
     }
 
-    private function getKey($username)
+    private function getKey(string $username): string
     {
         return 'user:'.$username;
     }
