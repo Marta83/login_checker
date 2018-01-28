@@ -7,7 +7,7 @@ use Trovit\Bundle\UserBundle\Entity\Repository\RedisUserRepository;
 use Trovit\Bundle\UserBundle\Entity\User;
 use AppBundle\Factory\RedisUserFactory;
 
-class UserFunctionalTest extends WebTestCase
+class UserCheckLoginFunctionalTest extends WebTestCase
 {
     private $client;
     private $redis;
