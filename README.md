@@ -4,7 +4,7 @@ Login and password checker
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the Symfony 3 project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -18,12 +18,9 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis
 ### Installing
 
 
+1. From application root execute composer install and enter parameter.yml data when the installer required them. (Redis host and port).
 
-1. Unzip the folder that contains the Symfony 3 application.
-
-2. From application root execute composer install and enter parameter.yml data when the installer required them. (Redis host and port).
-
-3. To load initial data into Redis server, the execution of this command is needed from the project root: 
+2. To load initial data into Redis server, the execution of this command is needed from the project root:
 
 ```
 php bin/console app:load-initial-data
@@ -42,13 +39,13 @@ Users loaded in Redis and its corresponding passwords are:
 | pennywise | pennywisepass |
 
 
-4. From application root, run server:  
+3. From application root, run server:
 
 ```
 php bin/console server:run
 ```
 
-5. Test main exercise with this route and change the parameters in order to see all cases:
+4. Test main exercise with this route and change the parameters in order to see all cases:
 
 ```
 http://127.0.0.1:8000/check-login?username=demogorgon&pass=demogorgonpass
